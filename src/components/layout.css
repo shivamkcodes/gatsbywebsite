@@ -1,0 +1,33 @@
+.bg-theme {
+  background-color: #6a27ad;
+}
+body {
+  /* overflow-y: hidden; Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+/* rgba(150, 15, 240, 0.781) */
+.nav-color {
+  font-size: 2rem;
+}
+.hero-background {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.about-background {
+  min-height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.flexy {
+  flex-direction: column;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
