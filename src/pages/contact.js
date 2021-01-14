@@ -6,32 +6,27 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Mainsection from "../components/Reusable/Mainsection"
 import InfoBlock from "../components/Reusable/InfoBlock"
-import DualinfoBlock from "../components/Reusable/DualinfoBlock"
+import Contact from "../components/Contact/contact"
 
-import Teamphoto from "../components/About/Teamphoto"
-
-const AboutPage = ({ data }) => (
+const ContactPage = ({ data }) => (
   <Layout>
-    <SEO title="Home" />
+    <SEO title="Contact" />
 
     <Mainsection
       img={data.img.childImageSharp.fluid}
-      title="About Us"
+      title="Contact Us"
       subtitle=""
       mainclass="about-background"
     />
-    <DualinfoBlock
-      heading="A message from CEO"
-      url="https://images.pexels.com/photos/879109/pexels-photo-879109.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500\"
-    ></DualinfoBlock>
-    <InfoBlock heading="Our Vision" />
-    <Teamphoto />
+
+    <InfoBlock heading="How can we help?" />
+    <Contact />
   </Layout>
 )
 
 export const query = graphql`
   {
-    img: file(relativePath: { eq: "about.png" }) {
+    img: file(relativePath: { eq: "contact.png" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid_tracedSVG
@@ -41,4 +36,4 @@ export const query = graphql`
   }
 `
 
-export default AboutPage
+export default ContactPage
