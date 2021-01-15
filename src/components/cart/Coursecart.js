@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import Img from "gatsby-image"
 import { node } from "prop-types"
+import Heading from "../Reusable/Heading"
 
 const getCate = items => {
   let holditem = items.map(items => {
@@ -8,13 +9,8 @@ const getCate = items => {
   })
 
   let holdCategories = new Set(holditem)
-  // console.log(holdCategories)
-  // holdCategories.delete("web")
-  // console.log(holdCategories)
 
   let categories = Array.from(holdCategories)
-
-  // console.log(categories)
 
   categories = ["all", ...categories]
   return categories
@@ -26,9 +22,11 @@ export default class Coursecart extends Component {
     this.state = {
       courses: props.courses.edges,
       mobilecourses: props.courses.edges,
+      bundles: props.bundles.edges,
       mycategory: getCate(props.courses.edges),
     }
   }
+
   cateClicked = category => {
     let safe = [...this.state.courses]
 
@@ -49,11 +47,8 @@ export default class Coursecart extends Component {
         }
       })
     }
-    // console.log(node.category)
   }
   render() {
-    // console.log(process.env.CONTENTFUL_ACCESS_TOKEN)
-
     return (
       <section className="py-3 ">
         <div className="container">
@@ -65,7 +60,7 @@ export default class Coursecart extends Component {
                 return (
                   <button
                     type="button"
-                    className="btn btn-primary m-3 px-3"
+                    className="btn btx  text-white m-3 px-3"
                     key={index}
                     onClick={() => {
                       this.cateClicked(category)
@@ -94,6 +89,38 @@ export default class Coursecart extends Component {
                     <p className="text-muted">
                       {/* <small>{node.description.description}</small> */}
                     </p>
+                    <button
+                      className="btn btn-primary snipcart-add-item"
+                      data-item-id={node.id}
+                      data-item-price={node.price}
+                      data-item-url="https://storex.netlify.app/"
+                      data-item-image={node.image.fixed.src}
+                      data-item-name={node.title}
+                    >
+                      Join Now
+                    </button>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+
+          <Heading title="Bundles" color="text-dark" />
+
+          <div className="row">
+            {this.state.bundles.map(({ node }) => {
+              return (
+                <div
+                  key={node.id}
+                  className="col-11 col-md-6 d-flex my-3 mx-auto"
+                >
+                  <Img fixed={node.image.fixed} />
+                  <div className="flex-grow-1 px-3">
+                    <div className="d-flex justify-content-between">
+                      <h6 className="mb-0">{node.title}</h6>
+                      <h6 className="mb-0"> $ {node.price}</h6>
+                    </div>
+
                     <button
                       className="btn btn-primary snipcart-add-item"
                       data-item-id={node.id}

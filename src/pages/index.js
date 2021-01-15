@@ -18,13 +18,14 @@ const IndexPage = ({ data }) => (
       mainclass="hero-background"
     />
     <InfoBlock heading="About us" />
-    <Coursecart courses={data.mycourses} />
+    <Coursecart courses={data.mycourses} bundles={data.coursebundles} />
     <DualinfoBlock
       heading="Our Team"
       url="https://images.pexels.com/photos/879109/pexels-photo-879109.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500\"
     ></DualinfoBlock>
   </Layout>
 )
+// ...GatsbyContentfulFixed_tracedSVG
 
 export const query = graphql`
   {
@@ -45,6 +46,21 @@ export const query = graphql`
           description {
             description
           }
+          image {
+            fixed(width: 200, height: 120) {
+              ...GatsbyContentfulFixed_tracedSVG
+            }
+          }
+        }
+      }
+    }
+
+    coursebundles: allContentfulBundles {
+      edges {
+        node {
+          id
+          title
+          price
           image {
             fixed(width: 200, height: 120) {
               ...GatsbyContentfulFixed_tracedSVG
