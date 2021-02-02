@@ -22,6 +22,7 @@ export default class Coursecart extends Component {
     this.state = {
       courses: props.courses.edges,
       mobilecourses: props.courses.edges,
+      apps: props.apps.edges,
       bundles: props.bundles.edges,
       mycategory: getCate(props.courses.edges),
     }
@@ -131,6 +132,31 @@ export default class Coursecart extends Component {
                     >
                       Join Now
                     </button>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+          <Heading title="Apps" color="text-dark" />
+
+          <div className="row">
+            {this.state.apps.map(({ node }) => {
+              return (
+                <div
+                  key={node.id}
+                  className="col-11 col-md-6 d-flex my-3 mx-auto"
+                >
+                  <Img fixed={node.media.fixed} />
+                  <div className="flex-grow-1 px-3">
+                    <div className="d-flex justify-content-between">
+                      <h6 className="mb-0">{node.app}</h6>
+                    </div>
+
+                    <a download={node.app} href={node.links} target="_blank">
+                      <button className="btn btn-primary my-2">
+                        Download App
+                      </button>
+                    </a>
                   </div>
                 </div>
               )

@@ -18,7 +18,11 @@ const IndexPage = ({ data }) => (
       mainclass="hero-background"
     />
     <InfoBlock heading="About us" />
-    <Coursecart courses={data.mycourses} bundles={data.coursebundles} />
+    <Coursecart
+      courses={data.mycourses}
+      bundles={data.coursebundles}
+      apps={data.courseapps}
+    />
     <DualinfoBlock
       heading="Our Team"
       url="https://images.pexels.com/photos/879109/pexels-photo-879109.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500\"
@@ -62,6 +66,21 @@ export const query = graphql`
           title
           price
           image {
+            fixed(width: 200, height: 120) {
+              ...GatsbyContentfulFixed_tracedSVG
+            }
+          }
+        }
+      }
+    }
+
+    courseapps: allContentfulApps {
+      edges {
+        node {
+          id
+          app
+          links
+          media {
             fixed(width: 200, height: 120) {
               ...GatsbyContentfulFixed_tracedSVG
             }
